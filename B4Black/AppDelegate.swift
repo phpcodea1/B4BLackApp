@@ -38,7 +38,8 @@ import FirebaseMessaging
       
        //  Messaging.messaging().delegate = self as! MessagingDelegate
        UITextField.appearance().defaultFont = UIFont.init(name: "Comfortaa", size: 17.0)
-     
+    // Amar IOS Dept. git test
+    
         if let str = DEFAULT.value(forKey: "BUSINESS") as? String
         {
              loadBusinessView()
