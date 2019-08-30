@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="clientCell" rowHeight="138" id="KGk-i7-Jjw" customClass="clientCell" customModule="B4Black" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="428" height="107"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="428" height="106.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="userChatBack" translatesAutoresizingMaskIntoConstraints="NO" id="Ag1-kk-Tah">
+                        <rect key="frame" x="60" y="9" width="315" height="62"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="62" id="Ion-uh-N48"/>
+                        </constraints>
+                    </imageView>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chatProfile" translatesAutoresizingMaskIntoConstraints="NO" id="RkH-Te-y6L">
+                        <rect key="frame" x="383" y="20" width="40" height="40"/>
+                        <color key="backgroundColor" red="0.81568627450980391" green="0.87450980392156863" blue="0.90980392156862744" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="40" id="O0a-Ar-W9z"/>
+                            <constraint firstAttribute="height" constant="40" id="PKj-Fx-sWT"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Appears; when a user taps Return in the keyboard, the" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IcZ-gg-anO">
+                        <rect key="frame" x="67" y="20" width="296" height="46"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10:12 am" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aI5-fk-5JX">
+                        <rect key="frame" x="60" y="78" width="58" height="10"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="58" id="0py-Hz-IQ1"/>
+                            <constraint firstAttribute="height" constant="10" id="guc-YY-Axs"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <constraints>
+                    <constraint firstItem="RkH-Te-y6L" firstAttribute="leading" secondItem="IcZ-gg-anO" secondAttribute="trailing" constant="20" id="BJd-VY-Wwd"/>
+                    <constraint firstItem="aI5-fk-5JX" firstAttribute="top" secondItem="Ag1-kk-Tah" secondAttribute="bottom" constant="7" id="Ebu-uK-jtE"/>
+                    <constraint firstItem="RkH-Te-y6L" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="H8w-vq-Qin"/>
+                    <constraint firstItem="aI5-fk-5JX" firstAttribute="top" secondItem="IcZ-gg-anO" secondAttribute="bottom" constant="12" id="LWe-9V-vFn"/>
+                    <constraint firstItem="Ag1-kk-Tah" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="60" id="PcV-KB-5rB"/>
+                    <constraint firstItem="IcZ-gg-anO" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="9" id="Rj0-Dz-KkJ"/>
+                    <constraint firstAttribute="trailing" secondItem="RkH-Te-y6L" secondAttribute="trailing" constant="5" id="SKR-m8-2ES"/>
+                    <constraint firstItem="aI5-fk-5JX" firstAttribute="leading" secondItem="Ag1-kk-Tah" secondAttribute="leading" id="VMC-oT-cOM"/>
+                    <constraint firstItem="IcZ-gg-anO" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="47" id="YIH-zL-YVb"/>
+                    <constraint firstItem="Ag1-kk-Tah" firstAttribute="centerY" secondItem="RkH-Te-y6L" secondAttribute="centerY" id="lOx-NB-ldZ"/>
+                    <constraint firstItem="RkH-Te-y6L" firstAttribute="leading" secondItem="Ag1-kk-Tah" secondAttribute="trailing" constant="8" id="nWD-kc-2Ib"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <point key="canvasLocation" x="78.400000000000006" y="83.208395802098963"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="chatProfile" width="111" height="111"/>
+        <image name="userChatBack" width="300" height="56"/>
+    </resources>
+</document>

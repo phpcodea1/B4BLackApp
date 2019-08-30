@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" restorationIdentifier="userCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="userCell" rowHeight="103" id="KGk-i7-Jjw" customClass="userCell" customModule="B4Black" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="450" height="90"/>
+            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="450" height="89.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="left_tip" translatesAutoresizingMaskIntoConstraints="NO" id="TQK-n3-dRp">
+                        <rect key="frame" x="50" y="10" width="340" height="62"/>
+                        <constraints>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="62" id="4mU-03-gPE"/>
+                            <constraint firstAttribute="height" constant="62" id="dQB-41-xzi"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Appears; when a user taps Return in the keyboard, the  " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="VsT-aA-hhR">
+                        <rect key="frame" x="58" y="9.5" width="332" height="61"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="61" id="gil-R3-HrO"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chatProfile" translatesAutoresizingMaskIntoConstraints="NO" id="rfC-vb-5Ka">
+                        <rect key="frame" x="2" y="20" width="40" height="40"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="40" id="E72-W8-bEQ"/>
+                            <constraint firstAttribute="height" constant="40" id="Qpv-QT-Mb9"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10:12 am" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Grm-PR-Rr1">
+                        <rect key="frame" x="332" y="77" width="58" height="10"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="10" id="kd3-oF-lII"/>
+                            <constraint firstAttribute="width" constant="58" id="rBm-QC-28f"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <constraints>
+                    <constraint firstItem="TQK-n3-dRp" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="50" id="Eqb-U8-BoR"/>
+                    <constraint firstItem="VsT-aA-hhR" firstAttribute="leading" secondItem="rfC-vb-5Ka" secondAttribute="trailing" constant="16" id="HW0-0G-p9d"/>
+                    <constraint firstAttribute="trailing" secondItem="Grm-PR-Rr1" secondAttribute="trailing" constant="60" id="KF7-GU-k77"/>
+                    <constraint firstItem="VsT-aA-hhR" firstAttribute="centerY" secondItem="rfC-vb-5Ka" secondAttribute="centerY" id="L2G-LU-jzr"/>
+                    <constraint firstAttribute="trailing" secondItem="VsT-aA-hhR" secondAttribute="trailing" constant="60" id="SYv-WW-TW1"/>
+                    <constraint firstItem="rfC-vb-5Ka" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="2" id="YPr-Dj-Lgl"/>
+                    <constraint firstItem="TQK-n3-dRp" firstAttribute="leading" secondItem="rfC-vb-5Ka" secondAttribute="trailing" constant="8" id="c3s-IW-Tar"/>
+                    <constraint firstItem="rfC-vb-5Ka" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="cYe-BT-W10"/>
+                    <constraint firstItem="TQK-n3-dRp" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="j4h-Yh-j8u"/>
+                    <constraint firstItem="Grm-PR-Rr1" firstAttribute="top" secondItem="TQK-n3-dRp" secondAttribute="bottom" constant="5" id="ows-PC-DM8"/>
+                    <constraint firstAttribute="trailing" secondItem="TQK-n3-dRp" secondAttribute="trailing" constant="60" id="yOd-sX-LD4"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <point key="canvasLocation" x="129.59999999999999" y="115.14242878560721"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="chatProfile" width="111" height="111"/>
+        <image name="left_tip" width="310" height="75"/>
+    </resources>
+</document>

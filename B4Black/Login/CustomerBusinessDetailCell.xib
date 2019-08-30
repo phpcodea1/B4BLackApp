@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CustomerBusinessDetailCell" id="gTV-IL-0wX" customClass="CustomerBusinessDetailCell" customModule="B4Black" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="275" height="145"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="275" height="145"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Iqp-Cb-a3i">
+                        <rect key="frame" x="0.0" y="0.0" width="275" height="145"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rectImage" translatesAutoresizingMaskIntoConstraints="NO" id="4CK-EV-ugO">
+                                <rect key="frame" x="5" y="5" width="265" height="135"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.82068215095784725" green="0.82658633909423462" blue="0.82658633909423462" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="4CK-EV-ugO" firstAttribute="top" secondItem="Iqp-Cb-a3i" secondAttribute="top" constant="5" id="Iaj-p2-Xag"/>
+                            <constraint firstAttribute="bottom" secondItem="4CK-EV-ugO" secondAttribute="bottom" constant="5" id="N7x-oy-Obl"/>
+                            <constraint firstAttribute="trailing" secondItem="4CK-EV-ugO" secondAttribute="trailing" constant="5" id="d0z-Mq-gAF"/>
+                            <constraint firstItem="4CK-EV-ugO" firstAttribute="leading" secondItem="Iqp-Cb-a3i" secondAttribute="leading" constant="5" id="txP-hR-GE6"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="Iqp-Cb-a3i" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="P9u-3f-B5E"/>
+                <constraint firstAttribute="bottom" secondItem="Iqp-Cb-a3i" secondAttribute="bottom" id="cPn-pn-x2b"/>
+                <constraint firstItem="Iqp-Cb-a3i" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="ijb-Is-fBg"/>
+                <constraint firstAttribute="trailing" secondItem="Iqp-Cb-a3i" secondAttribute="trailing" id="vZz-YO-zcl"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <size key="customSize" width="275" height="145"/>
+            <connections>
+                <outlet property="mainImage" destination="4CK-EV-ugO" id="hIs-AT-6ls"/>
+            </connections>
+            <point key="canvasLocation" x="119.2" y="66.11694152923539"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="rectImage" width="411" height="189"/>
+    </resources>
+</document>
