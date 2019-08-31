@@ -264,10 +264,6 @@ class SectionViewController: UIViewController,UITableViewDelegate, UITableViewDa
             
             
         }
-        
-        
-        
-        
         if chatListArray.count > 0
         {
             // blurview.isHidden = true
@@ -275,15 +271,10 @@ class SectionViewController: UIViewController,UITableViewDelegate, UITableViewDa
         else
         {
             // blurview.isHidden = false
-            
-            
         }
-        
         self.tab.reloadData()
         
-        
     }
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         if let rowCount = (((self.chatListArray.object(at: section) as! DataSnapshot).value) as? NSDictionary)
@@ -291,7 +282,6 @@ class SectionViewController: UIViewController,UITableViewDelegate, UITableViewDa
             return rowCount.count
         }
         else
-        
         {
             return 0
         }
@@ -306,7 +296,6 @@ class SectionViewController: UIViewController,UITableViewDelegate, UITableViewDa
     }
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView?
     {
-      
         let cell1 = tableView.dequeueReusableCell(withIdentifier: "TableViewCell") as! TableViewCell
         let  data = ((chatListArray).object(at: section) as! DataSnapshot).key
         print(data)
@@ -319,7 +308,7 @@ class SectionViewController: UIViewController,UITableViewDelegate, UITableViewDa
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TableViewCell") as! TableViewCell
+         let cell = tableView.dequeueReusableCell(withIdentifier: "TableViewCell") as! TableViewCell
          cell.LeftSideSpaceConstant.constant = 30
          cell.imageViewWidth.constant = 40
          var allkey = NSArray()
@@ -342,7 +331,7 @@ class SectionViewController: UIViewController,UITableViewDelegate, UITableViewDa
         {
             if let fistDict = allvalue.object(at: 0) as? NSDictionary
             {
-                if let from_user_name = fistDict.value(forKey: "from_user_name") as? String
+                if let from_user_name = fistDict.value(forKey: "our_business_name") as? String
                 {
                     cell.userName.text = from_user_name
                 }
@@ -355,7 +344,6 @@ class SectionViewController: UIViewController,UITableViewDelegate, UITableViewDa
                     cell.userImage!.sd_setShowActivityIndicatorView(true)
                     cell.userImage!.sd_setIndicatorStyle(.gray)
                     cell.userImage!.sd_setImage(with: url, placeholderImage: nil, options: .refreshCached, completed: nil)
-
                 }
                 else
                 {
@@ -399,7 +387,7 @@ class SectionViewController: UIViewController,UITableViewDelegate, UITableViewDa
         {
             if let fistDict = allvalue.object(at: 0) as? NSDictionary
             {
-                if let from_user_name = fistDict.value(forKey: "from_user_name") as? String
+                if let from_user_name = fistDict.value(forKey: "our_business_name") as? String
                 {
                     targetVc.headingName = from_user_name
                 }

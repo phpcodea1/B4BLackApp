@@ -13,7 +13,7 @@ import KYDrawerController
 
 class CustomerBusinessDetailViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource
 {
-    
+
     @IBOutlet weak var scrollViewHeight: NSLayoutConstraint!
     @IBOutlet weak var myDetalView: UIView!
     @IBOutlet weak var myScrollView: UIScrollView!
@@ -57,7 +57,11 @@ class CustomerBusinessDetailViewController: UIViewController,UICollectionViewDel
     var BUSNES_USER_idForChat = ""
     var businessNAme = ""
     var recieveCustomerProfile = ""
-
+    var customer_user_name = ""
+    var imageMutableArray = NSMutableArray()
+    var b_user_name = ""
+    
+    
     override func viewDidLoad()
     {
          super.viewDidLoad()
@@ -106,6 +110,9 @@ class CustomerBusinessDetailViewController: UIViewController,UICollectionViewDel
             CollectionViewUser.delegate = self
             CollectionViewUser.dataSource = self
             print(recieveCustomerProfile)
+            print(customer_user_name)
+        
+        
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
@@ -233,13 +240,15 @@ class CustomerBusinessDetailViewController: UIViewController,UICollectionViewDel
     @IBAction func chatBtnAct(_ sender: UIButton)
     {
         
+       
         let chatView = self.storyboard?.instantiateViewController(withIdentifier: "DemoChatController") as! DemoChatController
-        
         chatView.profileImage = recieveCustomerProfile
-        chatView.TheBusinesProfileArray = imageAr
+        chatView.TheBusinesProfileArray = imageAr .mutableCopy() as! NSMutableArray
         chatView.BUSNES_User_ID = BUSNES_USER_idForChat
         chatView.myBusinessId = businesUserId
-        chatView.B_Name = businessNAme
+        chatView.Business_Namee = businessNAme
+        chatView.Customer_namee = "Android"
+        chatView.B_USer_NAme = b_user_name
         chatView.fromChatList = "no"
         
         self.navigationController?.pushViewController(chatView, animated: true)
@@ -256,11 +265,6 @@ class CustomerBusinessDetailViewController: UIViewController,UICollectionViewDel
     func customerSideBusinessDetailAPI()
     {
         SVProgressHUD.show()
-        var USERID = "66"
-        if  let id = DEFAULT.value(forKey: "USERID") as? String
-        {
-            USERID = id
-        }
         
         let para = ["business_id" : businesUserId] as [String : AnyObject]
         print(para)
@@ -282,8 +286,6 @@ class CustomerBusinessDetailViewController: UIViewController,UICollectionViewDel
                 {
                     SVProgressHUD.dismiss()
                    
-                    
-                    
                     if let detailMainArray2 = ((json as NSDictionary).value(forKey: "business_data") as? NSArray)
                     {
                         
@@ -332,6 +334,10 @@ class CustomerBusinessDetailViewController: UIViewController,UICollectionViewDel
                             {
                                 self.BUSNES_USER_idForChat = B_User_Id
                             }
+                            if  let business_communication_email = (((json as NSDictionary).value(forKey: "business_data") as! NSArray).object(at: 0) as! NSDictionary).value(forKey: "business_communication_email") as? String
+                            {
+                                self.b_user_name = business_communication_email
+                            }
                             
                             if let reviewArray1 = dict.value(forKey: "business_review") as? NSArray
                             {
@@ -369,7 +375,7 @@ class CustomerBusinessDetailViewController: UIViewController,UICollectionViewDel
                     }
                 }
         },failure:
-            {
+        {
                 string in
                 SVProgressHUD.dismiss()
                 let alert = UIAlertController(title: "", message: string, preferredStyle: .alert)

@@ -356,7 +356,10 @@ class LoginVC: UIViewController
           {
             DEFAULT.set(business_id, forKey: "BusinessId")
           }
-            
+          if let user_fname = ((json as NSDictionary).value(forKey: "data") as! NSDictionary).value(forKey: "user_fname") as? String
+            {
+                DEFAULT.set(user_fname, forKey: "USERNAME")
+            }
             if let user_type1 = (((json as NSDictionary).value(forKey: "data") as! NSDictionary).value(forKey: "user_type") as! String) as? String
             {
                 if user_type1 == "2"

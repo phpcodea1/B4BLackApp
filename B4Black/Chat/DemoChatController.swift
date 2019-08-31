@@ -6,7 +6,7 @@
 //  Copyright © 2019 eWeb. All rights reserved.
 //
 // https://gist.github.com/frankgumeta/1367105d30a9e4476fe5
-
+//
 
 import UIKit
 import Firebase
@@ -60,7 +60,7 @@ class DemoChatController:JSQMessagesViewController,UIImagePickerControllerDelega
     
     // CUSTOMER SIDE DATA
     
-    var TheBusinesProfileArray = NSArray()
+    var TheBusinesProfileArray = NSMutableArray()
     var profileImage = ""
     var B_Name = ""
     var dataFromChatList = NSDictionary()
@@ -68,6 +68,10 @@ class DemoChatController:JSQMessagesViewController,UIImagePickerControllerDelega
     var B_IDFromList = ""
     var workingBusinesId = ""
     var profileImageUrl = ""
+   
+    var Business_Namee = ""
+    var Customer_namee = ""
+    var BusinessUSerNAme = ""
     
     // From Business ChatList Data
     
@@ -76,19 +80,19 @@ class DemoChatController:JSQMessagesViewController,UIImagePickerControllerDelega
     var headingImage = ""
     var BusinesIDFromChatList = ""
     var B_user_id = ""
+   
+    var businessname = ""
+    var BusinesUserName = ""
+    var B_USer_NAme = ""
     
-    lazy var outgoingBubble: JSQMessagesBubbleImage = {
-            
+    lazy var outgoingBubble: JSQMessagesBubbleImage =
+    {
     return JSQMessagesBubbleImageFactory()!.outgoingMessagesBubbleImage(with: UIColor.init(red: 76/255.0, green: 106/255.0, blue: 219/255.0, alpha: 1))
-        
     }()
-    
-    lazy var incomingBubble: JSQMessagesBubbleImage = {
-            
-     return JSQMessagesBubbleImageFactory()!.incomingMessagesBubbleImage(with: UIColor.init(red: 240/255.0, green: 242/255.0, blue: 244/255.0, alpha: 1))
-        
+    lazy var incomingBubble: JSQMessagesBubbleImage =
+    {
+      return JSQMessagesBubbleImageFactory()!.incomingMessagesBubbleImage(with: UIColor.init(red: 240/255.0, green: 242/255.0, blue: 244/255.0, alpha: 1))
     }()
-    
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -202,8 +206,8 @@ class DemoChatController:JSQMessagesViewController,UIImagePickerControllerDelega
             print("My Business NAME = ", myBusinessNAME)
             label.text = myBusinessNAME
             print(profileImage)
-            var mainArray = TheBusinesProfileArray as! NSMutableArray
-            if mainArray.count == nil
+           
+            if TheBusinesProfileArray.count == nil
             {
                imageView.image = UIImage(named: "BGProfile")
             }
@@ -222,17 +226,20 @@ class DemoChatController:JSQMessagesViewController,UIImagePickerControllerDelega
                     // self.mahImg = profileImage
                     self.mahImg = "\(dpURL!)"
                 }
-                let value = ((TheBusinesProfileArray as NSArray).object(at: 0) as! NSDictionary).value(forKey: "image_path") as! String
-                let url = URL(string: value)
-                imageView.sd_setShowActivityIndicatorView(true)
-                imageView.sd_setIndicatorStyle(.gray)
-                imageView.sd_setImage(with: url, placeholderImage: nil, options: .refreshCached, completed: nil)
-                self.img = "\(imageView.image!)"
-                self.dpURL = url
-                // self.mahImg = profileImage
-                 self.mahImg = "\(dpURL!)"
+                if TheBusinesProfileArray.count > 0
+                {
+                    let value = ((TheBusinesProfileArray).object(at: 0) as! NSDictionary).value(forKey: "image_path") as! String
+                    let url = URL(string: value)
+                    imageView.sd_setShowActivityIndicatorView(true)
+                    imageView.sd_setIndicatorStyle(.gray)
+                    imageView.sd_setImage(with: url, placeholderImage: nil, options: .refreshCached, completed: nil)
+                    self.img = "\(imageView.image!)"
+                    self.dpURL = url
+                    // self.mahImg = profileImage
+                    self.mahImg = "\(dpURL!)"
                 }
-            
+               
+        }
         }
         
         getAllMassage()
@@ -487,18 +494,17 @@ class DemoChatController:JSQMessagesViewController,UIImagePickerControllerDelega
             device_token = token
         }
         var message = ["":""]
-        
         if fromChatList == "yes"
         {
-            message = ["from_user_id": USERID, "from_user_name": senderDisplayName, "message": text,"to_user_id": B_IDFromList, "to_user_name": recieverName, "to_deviceid": device_token,"message_time":"\(date)","profile_image": self.mahImg]
+            message = ["from_user_id": USERID, "from_user_name": senderDisplayName, "User name": text,"to_user_id": B_IDFromList, "to_user_name": recieverName, "to_deviceid": device_token,"message_time":"\(date)","profile_image": self.mahImg, "our_business_name": Business_Namee]
         }
         else if fromBusiensChatList == "yes"
         {
-            message = ["from_user_id": B_user_id, "from_user_name": senderDisplayName, "message": text,"to_user_id": USERID, "to_user_name": recieverName, "to_deviceid": device_token,"message_time":"\(date)","profile_image": self.mahImg]
+            message = ["from_user_id": B_user_id, "from_user_name": senderDisplayName, "message": text,"to_user_id": USERID, "to_user_name": B_nameFromList, "to_deviceid": device_token,"message_time":"\(date)","profile_image": self.mahImg, "our_business_name": Business_Namee]
         }
         else
         {
-            message = ["from_user_id": USERID, "from_user_name": B_Name, "message": text,"to_user_id": BUSNES_User_ID, "to_user_name": myBusinessNAME, "to_deviceid": device_token,"message_time":"\(date)","profile_image": self.mahImg]
+            message = ["from_user_id": USERID, "from_user_name": Customer_namee, "message": text,"to_user_id": BUSNES_User_ID, "to_user_name": B_USer_NAme, "to_deviceid": device_token,"message_time":"\(date)","profile_image": self.mahImg,"our_business_name": Business_Namee]
         }
         
         ref.setValue(message)
@@ -552,7 +558,7 @@ class DemoChatController:JSQMessagesViewController,UIImagePickerControllerDelega
             device_token = token
         }
         
-        let message = ["from_user_id": "1", "from_user_name": senderDisplayName, "message": imageUrl,"to_user_id": BUSNES_User_ID, "to_user_name": recieverName, "to_deviceid": device_token,"message_time":"2019-05-29 13:54:22 +0000","profile_image": self.mahImg] as [String : Any]
+        let message = ["from_user_id": "1", "from_user_name": senderDisplayName, "message": imageUrl,"to_user_id": BUSNES_User_ID, "to_user_name": B_nameFromList , "to_deviceid": device_token,"message_time":"2019-05-29 13:54:22 +0000","profile_image": self.mahImg] as [String : Any]
         
         ref.setValue(message)
         
@@ -705,14 +711,13 @@ class DemoChatController:JSQMessagesViewController,UIImagePickerControllerDelega
     }
     
 }
-extension Date {
-    
+extension Date
+{
     func currentTimeZoneDate() -> String
     {
         let dtf = DateFormatter()
         dtf.timeZone = TimeZone.current
         dtf.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        
         return dtf.string(from: self)
     }
 }

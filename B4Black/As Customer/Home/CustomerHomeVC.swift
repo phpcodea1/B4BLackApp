@@ -177,7 +177,11 @@ class CustomerHomeVC: UIViewController,UICollectionViewDelegate, UICollectionVie
             let vc = storyboard?.instantiateViewController(withIdentifier: "CustomerBusinessDetailViewController") as!CustomerBusinessDetailViewController
             
             vc.businesUserId = ((mainArray1.object(at: indexPath.item) as? NSDictionary)!.value(forKey: "business_id") as? String)!
+            
             vc.businessNAme =  ((mainArray1).object(at: indexPath.row) as! NSDictionary).value(forKey: "business_name") as! String
+            
+           // vc.customer_user_name = mainDict2.value(forKey: "user_fname") as! String
+            
             vc.recieveCustomerProfile = userImageForDetailPage
             
             self.navigationController?.pushViewController(vc, animated: true)
@@ -191,7 +195,6 @@ class CustomerHomeVC: UIViewController,UICollectionViewDelegate, UICollectionVie
         DEFAULT.synchronize()
         self.popView.isHidden = true
     }
-    
     
     //////         Home Page API
     
@@ -233,6 +236,7 @@ class CustomerHomeVC: UIViewController,UICollectionViewDelegate, UICollectionVie
 
              //var mainArray1 = ((json as NSDictionary).value(forKey: "business_data") as? NSArray)!
             self.mainArray1 = ((json as NSDictionary).value(forKey: "business_data") as?                         NSArray)!
+          //  self.mainDict2 = ((json as NSDictionary).value(forKey: "user_data") as?                         NSDictionary)!
             self.mainArray1 = (self.mainArray1.reversed() as NSArray).mutableCopy() as! NSMutableArray
             self.collectionView.reloadData()
             
@@ -240,6 +244,7 @@ class CustomerHomeVC: UIViewController,UICollectionViewDelegate, UICollectionVie
             
             if  let userData2 = ((json as NSDictionary).value(forKey: "user_data") as? NSDictionary)
             {
+             
                 if let userData = userData2.value(forKey: "user_profile_image") as? String
                 {
                     let displayimg = imageBaseURL + userData

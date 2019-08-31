@@ -172,7 +172,7 @@ class ChatListVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIG
          {
             if let fistDict = dictMainArray.object(at: 0) as? NSDictionary
             {
-                if let from_user_name = fistDict.value(forKey: "from_user_name") as? String
+                if let from_user_name = fistDict.value(forKey: "our_business_name") as? String
                 {
                      cell1.usernameTF.text = from_user_name
                 }
@@ -242,7 +242,7 @@ class ChatListVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIG
         {
             if let fistDict = dictMainArray.object(at: 0) as? NSDictionary
             {
-                if let from_user_name = fistDict.value(forKey: "from_user_name") as? String
+                if let from_user_name = fistDict.value(forKey: "our_business_name") as? String
                 {
                 targetVc.B_nameFromList = from_user_name
                 }
