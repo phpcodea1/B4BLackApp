@@ -67,12 +67,15 @@ class DemoChatController:JSQMessagesViewController,UIImagePickerControllerDelega
     var B_nameFromList = ""
     var B_IDFromList = ""
     var workingBusinesId = ""
+    var profileImageUrl = ""
     
-    // From Business DAta
+    // From Business ChatList Data
     
     var fromBusiensChatList = "no"
-    
-    
+    var headingName = ""
+    var headingImage = ""
+    var BusinesIDFromChatList = ""
+    var B_user_id = ""
     
     lazy var outgoingBubble: JSQMessagesBubbleImage = {
             
@@ -168,9 +171,30 @@ class DemoChatController:JSQMessagesViewController,UIImagePickerControllerDelega
         if fromChatList == "yes"
         {
               label.text = B_nameFromList
+              print(profileImageUrl)
+            
+            if profileImageUrl != ""
+            {
+                let url = URL(string: profileImageUrl)
+              
+                imageView.sd_setImage(with: url, placeholderImage: nil, options: .refreshCached, completed: nil)
+            }
+           
               print(FetchDataFromChatList)
               print(customerListID)
               print(workingBusinesId)
+        }
+        else if fromBusiensChatList == "yes"
+        {
+            label.text = headingName
+            print(BusinesIDFromChatList)
+            print(B_user_id)
+            if headingImage != ""
+            {
+                let url = URL(string: headingImage)
+                
+                imageView.sd_setImage(with: url, placeholderImage: nil, options: .refreshCached, completed: nil)
+            }
         }
         else
         {
@@ -178,14 +202,26 @@ class DemoChatController:JSQMessagesViewController,UIImagePickerControllerDelega
             print("My Business NAME = ", myBusinessNAME)
             label.text = myBusinessNAME
             print(profileImage)
-            
-            if self.TheBusinesProfileArray.count == nil
+            var mainArray = TheBusinesProfileArray as! NSMutableArray
+            if mainArray.count == nil
             {
                imageView.image = UIImage(named: "BGProfile")
             }
             else
             {
                 print(TheBusinesProfileArray)
+                if  TheBusinesProfileArray.count > 0
+                {
+                    let value = ((TheBusinesProfileArray as NSArray).object(at: 0) as! NSDictionary).value(forKey: "image_path") as! String
+                    let url = URL(string: value)
+                    imageView.sd_setShowActivityIndicatorView(true)
+                    imageView.sd_setIndicatorStyle(.gray)
+                    imageView.sd_setImage(with: url, placeholderImage: nil, options: .refreshCached, completed: nil)
+                    self.img = "\(imageView.image!)"
+                    self.dpURL = url
+                    // self.mahImg = profileImage
+                    self.mahImg = "\(dpURL!)"
+                }
                 let value = ((TheBusinesProfileArray as NSArray).object(at: 0) as! NSDictionary).value(forKey: "image_path") as! String
                 let url = URL(string: value)
                 imageView.sd_setShowActivityIndicatorView(true)
@@ -254,7 +290,7 @@ class DemoChatController:JSQMessagesViewController,UIImagePickerControllerDelega
         print("\(DateDataBase)")
         cell.cellTopLabel.isHidden = false
         cell.cellTopLabel.textColor = UIColor.black
-        
+       
         if messages[indexPath.item].senderId == senderId
         {
             cell.textView!.textColor = UIColor.init(red: 255/255.0, green: 255/255.0, blue: 255/255.0, alpha: 1)
@@ -435,7 +471,7 @@ class DemoChatController:JSQMessagesViewController,UIImagePickerControllerDelega
         }
         else if fromBusiensChatList == "yes"
         {
-          ref = Constants.refs.databaseChats.child(USERID + "_" + B_IDFromList).child(workingBusinesId).childByAutoId()
+          ref = Constants.refs.databaseChats.child(B_user_id + "_" + USERID).child(BusinesIDFromChatList).childByAutoId()
         }
         else
         {
@@ -458,7 +494,7 @@ class DemoChatController:JSQMessagesViewController,UIImagePickerControllerDelega
         }
         else if fromBusiensChatList == "yes"
         {
-            message = ["from_user_id": USERID, "from_user_name": senderDisplayName, "message": text,"to_user_id": B_IDFromList, "to_user_name": recieverName, "to_deviceid": device_token,"message_time":"\(date)","profile_image": self.mahImg]
+            message = ["from_user_id": B_user_id, "from_user_name": senderDisplayName, "message": text,"to_user_id": USERID, "to_user_name": recieverName, "to_deviceid": device_token,"message_time":"\(date)","profile_image": self.mahImg]
         }
         else
         {
@@ -506,7 +542,6 @@ class DemoChatController:JSQMessagesViewController,UIImagePickerControllerDelega
         
     }
     
-    
     private func sendMessageWithImageUrl(imageUrl: String)
     {
         
@@ -550,7 +585,7 @@ class DemoChatController:JSQMessagesViewController,UIImagePickerControllerDelega
         }
         else if fromBusiensChatList == "yes"
         {
-            nextRef = Constants.refs.databaseChats.child(USERID + "_" + B_IDFromList).child(workingBusinesId)
+            nextRef = Constants.refs.databaseChats.child(B_user_id + "_" + USERID).child(BusinesIDFromChatList)
         }
         else
         {
@@ -668,7 +703,6 @@ class DemoChatController:JSQMessagesViewController,UIImagePickerControllerDelega
             return true
         }
     }
-    
     
 }
 extension Date {

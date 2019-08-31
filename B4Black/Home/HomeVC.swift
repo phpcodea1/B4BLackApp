@@ -138,7 +138,7 @@ class HomeVC: UIViewController,UICollectionViewDelegate,UICollectionViewDataSour
     @IBAction func ChatBtnAct(_ sender: UIButton)
     {
         
-     let chatView = self.storyboard?.instantiateViewController(withIdentifier: "ChatListVC") as! ChatListVC
+     let chatView = self.storyboard?.instantiateViewController(withIdentifier: "SectionViewController") as! SectionViewController
         
      self.navigationController?.pushViewController(chatView, animated: true)
         

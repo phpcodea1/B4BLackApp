@@ -14,7 +14,8 @@ class TableViewCell: UITableViewCell {
     @IBOutlet weak var userImage: UIImageView!
     @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var bgView: UIView!
-    
+    @IBOutlet weak var LeftSideSpaceConstant: NSLayoutConstraint!
+    @IBOutlet weak var imageViewWidth: NSLayoutConstraint!
     
     
     override func awakeFromNib() {

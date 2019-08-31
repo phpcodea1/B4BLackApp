@@ -4,18 +4,68 @@
    version = "2.0">
    <Breakpoints>
       <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.ExceptionBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            scope = "0"
+            stopOnStyle = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.SwiftErrorBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "B4Black/Chat/DemoChatController.swift"
-            timestampString = "588835582.8391171"
+            filePath = "B4Black/Setting/CustomerBusinessDetailViewController.swift"
+            timestampString = "588923167.369444"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "186"
-            endingLineNumber = "186"
-            landmarkName = "viewDidLoad()"
+            startingLineNumber = "238"
+            endingLineNumber = "238"
+            landmarkName = "chatBtnAct(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "B4Black/Setting/CustomerBusinessDetailViewController.swift"
+            timestampString = "588923167.3700221"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "240"
+            endingLineNumber = "240"
+            landmarkName = "chatBtnAct(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "B4Black/Setting/CustomerBusinessDetailViewController.swift"
+            timestampString = "588923167.370322"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "242"
+            endingLineNumber = "242"
+            landmarkName = "chatBtnAct(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -26,12 +76,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "B4Black/Chat/DemoChatController.swift"
-            timestampString = "588835582.839783"
+            timestampString = "588923167.370615"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "200"
-            endingLineNumber = "200"
-            landmarkName = "viewDidLoad()"
+            startingLineNumber = "478"
+            endingLineNumber = "478"
+            landmarkName = "didPressSend(_:withMessageText:senderId:senderDisplayName:date:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -42,12 +92,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "B4Black/Chat/DemoChatController.swift"
-            timestampString = "588835582.840042"
+            timestampString = "588923167.3709249"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "196"
-            endingLineNumber = "196"
-            landmarkName = "viewDidLoad()"
+            startingLineNumber = "501"
+            endingLineNumber = "501"
+            landmarkName = "didPressSend(_:withMessageText:senderId:senderDisplayName:date:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -58,12 +108,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "B4Black/Chat/DemoChatController.swift"
-            timestampString = "588835582.840294"
+            timestampString = "588923167.371182"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "192"
-            endingLineNumber = "192"
-            landmarkName = "viewDidLoad()"
+            startingLineNumber = "502"
+            endingLineNumber = "502"
+            landmarkName = "didPressSend(_:withMessageText:senderId:senderDisplayName:date:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -74,12 +124,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "B4Black/Chat/DemoChatController.swift"
-            timestampString = "588835582.840537"
+            timestampString = "588923167.371431"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "189"
-            endingLineNumber = "189"
-            landmarkName = "viewDidLoad()"
+            startingLineNumber = "592"
+            endingLineNumber = "592"
+            landmarkName = "getAllMassage()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

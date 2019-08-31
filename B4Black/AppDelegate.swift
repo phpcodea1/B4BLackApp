@@ -56,7 +56,6 @@ import FirebaseMessaging
                 DEFAULT.set("CUSTOMER", forKey: "CUSTOMER")
                 DEFAULT.synchronize()
                 loadCustomerView()
-                
         }
 
         }

@@ -55,6 +55,10 @@ class ChatListVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIG
     var NameOfBusiness = ""
     var allBusinessKeyArray = NSMutableArray()
     var finalListArray = NSMutableArray()
+    var sendImage = ""
+    
+    
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -149,29 +153,42 @@ class ChatListVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIG
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
       
-            return self.finalListArray.count
-        
-        
+      return self.finalListArray.count
+       
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         let cell1 = tableView.dequeueReusableCell(withIdentifier: "ChatListTableViewCell") as! ChatListTableViewCell
     
-        let dictMainArray = ((self.finalListArray.object(at: indexPath.row) as! NSDictionary).allValues) as NSArray
+        
+         cell1.Backview.layer.cornerRadius = 6
+         cell1.Backview.layer.borderWidth = 2
+         cell1.Backview.layer.borderColor = UIColor.lightGray.cgColor
+        
+        
+         let dictMainArray = ((self.finalListArray.object(at: indexPath.row) as! NSDictionary).allValues) as NSArray
 
-        if dictMainArray.count>0
-        {
+         if dictMainArray.count>0
+         {
             if let fistDict = dictMainArray.object(at: 0) as? NSDictionary
             {
                 if let from_user_name = fistDict.value(forKey: "from_user_name") as? String
                 {
                      cell1.usernameTF.text = from_user_name
                 }
-                if let profile_image = fistDict.value(forKey: "profile_image") as? String
+                cell1.profileImg?.layer.cornerRadius = 22.5
+              
+                if let Img = (fistDict).value(forKey: "profile_image") as? String
                 {
-                  //  let value = URL(string: profile_image)!
-                     cell1.imageView!.image = UIImage(named: "user")
-                    //cell1.imageView?.sd_setImage(with: value, completed: nil)
+                    let url = URL(string: Img)
+                    cell1.profileImg!.sd_setShowActivityIndicatorView(true)
+                    cell1.profileImg!.sd_setIndicatorStyle(.gray)
+                    cell1.profileImg!.sd_setImage(with: url, placeholderImage: nil, options: .refreshCached, completed: nil)
+                   
+                }
+                else
+                {
+                    cell1.profileImg?.image = UIImage(named: "BGProfile")
                 }
                 
             }
@@ -210,15 +227,17 @@ class ChatListVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIG
         targetVc.recieverId = id
         targetVc.recieverName = name
         var USERID = "66"
+       
         if  let id = DEFAULT.value(forKey: "USERID") as? String
         {
             USERID = id
         }
+        
         let userId = USERID
         targetVc.dict = CountValueInMessages as NSDictionary as! NSMutableDictionary
         
-        var dictMainArray = ((self.finalListArray.object(at: indexPath.row) as! NSDictionary).allValues) as! NSArray
-         var dictMainArray2 = ((self.finalListArray.object(at: indexPath.row) as! NSDictionary).allKeys) as! NSArray
+        let dictMainArray = ((self.finalListArray.object(at: indexPath.row) as! NSDictionary).allValues) as NSArray
+        let dictMainArray2 = ((self.finalListArray.object(at: indexPath.row) as! NSDictionary).allKeys) as NSArray
         if dictMainArray.count>0
         {
             if let fistDict = dictMainArray.object(at: 0) as? NSDictionary
@@ -231,16 +250,19 @@ class ChatListVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIG
                 {
                     targetVc.B_IDFromList = to_user_id
                 }
-           
-                
-                
+                if let Img = (fistDict).value(forKey: "profile_image") as? String
+                {
+                   
+                   
+                    targetVc.profileImageUrl = Img
+                }
+               
             }
         }
-        
         if self.allBusinessKeyArray.count>0
         {
             
-            var id = self.allBusinessKeyArray.object(at: indexPath.row) as! String
+            let id = self.allBusinessKeyArray.object(at: indexPath.row) as! String
             
                targetVc.workingBusinesId = id
         }
@@ -390,21 +412,13 @@ class ChatListVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIG
         {
          var dict = (((self.chatListArray.object(at: i) as! DataSnapshot).value) as! NSDictionary)
             var allKeys1 = dict.allKeys as! NSArray
-            
-            
-            
             for j in 0..<allKeys1.count
             {
                 self.allBusinessKeyArray.add(allKeys1.object(at: j))
-              self.finalListArray.add(dict.value(forKey: allKeys1.object(at: j) as! String))
+                self.finalListArray.add(dict.value(forKey: allKeys1.object(at: j) as! String))
             }
             
-            
         }
-        
-       
-        
-        
         if chatListArray.count > 0
         {
            // blurview.isHidden = true

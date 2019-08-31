@@ -14,7 +14,6 @@ import KYDrawerController
 class CustomerBusinessDetailViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource
 {
     
-    //@IBOutlet weak var TopImageCollection: UICollectionView!
     @IBOutlet weak var scrollViewHeight: NSLayoutConstraint!
     @IBOutlet weak var myDetalView: UIView!
     @IBOutlet weak var myScrollView: UIScrollView!
@@ -58,9 +57,11 @@ class CustomerBusinessDetailViewController: UIViewController,UICollectionViewDel
     var BUSNES_USER_idForChat = ""
     var businessNAme = ""
     var recieveCustomerProfile = ""
+
     override func viewDidLoad()
     {
          super.viewDidLoad()
+        
        //  TopImageCollection.isHidden = true
       // TopImageCollection.register(UINib(nibName: "CustomerBusinessDetailCell", bundle: nil), forCellWithReuseIdentifier: "CustomerBusinessDetailCell")
        
@@ -106,18 +107,15 @@ class CustomerBusinessDetailViewController: UIViewController,UICollectionViewDel
             CollectionViewUser.dataSource = self
             print(recieveCustomerProfile)
     }
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
         return 4
     }
-    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
     {
         let cell1 = collectionView.dequeueReusableCell(withReuseIdentifier: "CustomerCollectionViewCell", for: indexPath) as! CustomerCollectionViewCell
         return cell1
     }
-    
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath)
     {
         
@@ -232,7 +230,6 @@ class CustomerBusinessDetailViewController: UIViewController,UICollectionViewDel
             ApiHandler.showLoginAlertMessage()
         }
     }
-    
     @IBAction func chatBtnAct(_ sender: UIButton)
     {
         

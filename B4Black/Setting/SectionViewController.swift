@@ -63,6 +63,9 @@ class SectionViewController: UIViewController,UITableViewDelegate, UITableViewDa
     var dataDict = NSMutableDictionary()
     var NAME = ""
     
+    var allBusinessKeyArray = NSMutableArray()
+    var finalListArray = NSMutableArray()
+    
     
     override func viewDidLoad()
     {
@@ -87,7 +90,7 @@ class SectionViewController: UIViewController,UITableViewDelegate, UITableViewDa
         activityIndicator.center = view.center;
         self.view.addSubview(activityIndicator)
         self.chatDB = Database.database().reference()
-        getAllMassage()
+       
         
     }
     override func viewWillAppear(_ animated: Bool)
@@ -208,21 +211,23 @@ class SectionViewController: UIViewController,UITableViewDelegate, UITableViewDa
     }
     func filter()
     {
-        
         if self.chatListArray.count>0
         {
             self.chatListArray.removeAllObjects()
         }
-        if self.MainSectionArray.count>0
+        if self.finalListArray.count>0
         {
-            self.MainSectionArray.removeAllObjects()
+            self.finalListArray.removeAllObjects()
         }
-        
+        if self.allBusinessKeyArray.count>0
+        {
+            self.allBusinessKeyArray.removeAllObjects()
+        }
         for i in 0..<self.chatList.count
         {
             let subarray = self.chatList.object(at: i) as! NSArray
             
-            if subarray.contains(userId!)
+            if subarray.contains(userId)
             {
                 if self.chatListArray.contains(self.allData.object(at: i))
                 {
@@ -231,73 +236,135 @@ class SectionViewController: UIViewController,UITableViewDelegate, UITableViewDa
                 else
                 {
                     self.chatListArray.add(self.allData.object(at: i))
-                    sectionName = chatListArray
                 }
                 
                 SVProgressHUD.dismiss()
-                
             }
             else
             {
                 
             }
-            
         }
         self.searchedArray = self.chatListArray
         self.arrayToBeSearched = self.chatListArray
         print("self.chatListArray = \(self.chatListArray)")
-        MainSectionArray = chatListArray
-        headerCell = chatListArray
         
         for i in 0..<self.chatListArray.count
         {
-            haederData = ((chatListArray).object(at: i) as! DataSnapshot).key
-            print(haederData)
-            rowDataDict = ((chatListArray).object(at: i) as! DataSnapshot).value as! NSMutableDictionary
+            var dict = (((self.chatListArray.object(at: i) as! DataSnapshot).value) as! NSDictionary)
+            var allKeys1 = dict.allKeys as! NSArray
+            
+            
+            
+            for j in 0..<allKeys1.count
+            {
+                self.allBusinessKeyArray.add(allKeys1.object(at: j))
+                self.finalListArray.add(dict.value(forKey: allKeys1.object(at: j) as! String))
+            }
+            
+            
         }
+        
+        
+        
+        
+        if chatListArray.count > 0
+        {
+            // blurview.isHidden = true
+        }
+        else
+        {
+            // blurview.isHidden = false
+            
+            
+        }
+        
         self.tab.reloadData()
+        
+        
     }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-         return chatListArray.count
+        if let rowCount = (((self.chatListArray.object(at: section) as! DataSnapshot).value) as? NSDictionary)
+        {
+            return rowCount.count
+        }
+        else
         
-    }
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
-    {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TableViewCell") as! TableViewCell
-//        let KEY = ((((chatListArray).object(at: indexPath.row) as! DataSnapshot).value as! NSMutableDictionary).allKeys as NSArray).object(at: indexPath.row) as! String
-//
-//       let VALUE =  (((((((chatListArray).object(at: indexPath.row) as! DataSnapshot).value as! NSMutableDictionary).allValues as! NSArray).object(at: 0) as! NSDictionary).allValues as! NSArray).object(at: 0) as! NSMutableDictionary).value(forKey: "to_user_name") as! String
-        
-        let val1 = ((chatListArray).object(at: indexPath.row) as! DataSnapshot).key
-        cell.userName.text = val1
-        return cell
+        {
+            return 0
+        }
     }
     func numberOfSections(in tableView: UITableView) -> Int
     {
-            return MainSectionArray.count
-        
+            return chatListArray.count
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
     {
-        return 45
+        return 50
     }
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView?
     {
+      
+        let cell1 = tableView.dequeueReusableCell(withIdentifier: "TableViewCell") as! TableViewCell
+        let  data = ((chatListArray).object(at: section) as! DataSnapshot).key
+        print(data)
+        cell1.userName.text = "karanveer android"
+        cell1.LeftSideSpaceConstant.constant = 0
+        cell1.imageViewWidth.constant = 10
+        cell1.userImage.image = UIImage(named: "")
+        return cell1
+    }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
+    {
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "TableViewCell") as! TableViewCell
-        cell.contentView.backgroundColor = UIColor.white
-        cell.userName.textColor = UIColor.darkGray
-        print(MainSectionArray)
+         cell.LeftSideSpaceConstant.constant = 30
+         cell.imageViewWidth.constant = 40
+         var allkey = NSArray()
+         var dictMain = NSDictionary()
         
-        let allKeys = ((((MainSectionArray).object(at: section) as! DataSnapshot).value as! NSMutableDictionary).allKeys as NSArray)
-        print(allKeys)
-        if allKeys.count>0
+        if let rowCount = (((self.chatListArray.object(at: indexPath.section) as! DataSnapshot).value) as? NSDictionary)
         {
-            cell.userName.text = "\(allKeys.object(at: 0))"
+            allkey = rowCount.allKeys as NSArray
+            dictMain = rowCount
         }
+        var dictMainArray = NSDictionary()
         
-        cell.userImage.image = UIImage(named: "profileImage")
-        cell.userImage.backgroundColor = UIColor.clear
+        let key1 = allkey.object(at: indexPath.row) as! String
+        
+        dictMainArray =  dictMain.value(forKey: key1) as! NSDictionary
+        
+        let allvalue = dictMainArray.allValues as NSArray
+        
+        if allvalue.count>0
+        {
+            if let fistDict = allvalue.object(at: 0) as? NSDictionary
+            {
+                if let from_user_name = fistDict.value(forKey: "from_user_name") as? String
+                {
+                    cell.userName.text = from_user_name
+                }
+              
+                cell.userImage.layer.cornerRadius = 20
+
+                if let Img = (fistDict).value(forKey: "profile_image") as? String
+                {
+                    let url = URL(string: Img)
+                    cell.userImage!.sd_setShowActivityIndicatorView(true)
+                    cell.userImage!.sd_setIndicatorStyle(.gray)
+                    cell.userImage!.sd_setImage(with: url, placeholderImage: nil, options: .refreshCached, completed: nil)
+
+                }
+                else
+                {
+                    cell.userImage?.image = UIImage(named: "BGProfile")
+                }
+
+            }
+        }
+
         return cell
     }
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat
@@ -307,9 +374,45 @@ class SectionViewController: UIViewController,UITableViewDelegate, UITableViewDa
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
         let targetVc = self.storyboard?.instantiateViewController(withIdentifier: "DemoChatController") as! DemoChatController
+       
         targetVc.FetchDataFromChatList = chatListArray
         targetVc.heading = "a"
         targetVc.fromBusiensChatList = "yes"
+      
+        var dictMainArray = NSDictionary()
+        var allkey = NSArray()
+        var dictMain = NSDictionary()
+        if let rowCount = (((self.chatListArray.object(at: indexPath.section) as! DataSnapshot).value) as? NSDictionary)
+        {
+            allkey = rowCount.allKeys as NSArray
+            
+            dictMain = rowCount
+        }
+        
+        let key1 = allkey.object(at: indexPath.row) as! String
+        targetVc.BusinesIDFromChatList = key1
+        dictMainArray =  dictMain.value(forKey: key1) as! NSDictionary
+        
+        let allvalue = dictMainArray.allValues as NSArray
+        
+        if allvalue.count>0
+        {
+            if let fistDict = allvalue.object(at: 0) as? NSDictionary
+            {
+                if let from_user_name = fistDict.value(forKey: "from_user_name") as? String
+                {
+                    targetVc.headingName = from_user_name
+                }
+                if let from_user_id = fistDict.value(forKey: "from_user_id") as? String
+                {
+                    targetVc.B_user_id = from_user_id
+                }
+                if let Img = (fistDict).value(forKey: "profile_image") as? String
+                {
+                   targetVc.headingImage = Img
+                }
+            }
+        }
         self.navigationController?.pushViewController(targetVc, animated: true)
         
     }
